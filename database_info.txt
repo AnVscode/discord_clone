@@ -1,0 +1,4 @@
+password PlanerScale Database: 'main-2023-10-21-n57cj1'
+
+username: n2xcx26a6s4y9r3rdyiu
+password: pscale_pw_yRnSL44myrWV2bH8SbdqpaX7mCu2p8kf1vp28VfRKE0
