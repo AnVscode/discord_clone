@@ -1,4 +1,6 @@
-Integrate_authentication_user: https://clerk.com/?utm_source=www.google.com.vn&utm_medium=referral&utm_campaign=none
+Integrate_clerk: https://clerk.com/?utm_source=www.google.com.vn&utm_medium=referral&utm_campaign=none
+
+Integrate_uploadthing: https://uploadthing.com/
 
 Component_library: https://ui.shadcn.com/docs/components/slider
 
