@@ -1,0 +1,95 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider     = "mysql"
+    url          = env("DATABASE_URL")
+    relationMode = "prisma"
+}
+
+// bảng thông tin người dùng
+model Profile {
+    id     String @id @default(uuid())
+    userId String @unique
+    name   String
+    imgUrl String @db.Text
+    email  String @db.Text
+
+    servers  Server[]
+    members  Member[]
+    channels Channel[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+// bảng thông tin máy chủ
+model Server {
+    id         String @id @default(uuid())
+    name       String
+    imgUrl     String @db.Text
+    inviteCode String @db.Text
+
+    profileId String
+    profile   Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+    members  Member[]
+    channels Channel[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@index([profileId])
+}
+
+// role của người dùng trong máy chủ
+enum MemberRole {
+    ADMIN
+    MODERATOR
+    GUEST
+}
+
+// bảng thông tin thành viên
+model Member {
+    id   String     @id @default(uuid())
+    role MemberRole @default(GUEST)
+
+    profileId String
+    profile   Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+    serverId String
+    server   Server @relation(fields: [serverId], references: [id], onDelete: Cascade)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@index([profileId])
+    @@index([serverId])
+}
+
+// role trong phòng
+enum ChannelType {
+    TEXT
+    AUDIO
+    VIDEO
+}
+
+// bảng thông tin phòng
+model Channel {
+    id   String      @id @default(uuid())
+    name String
+    type ChannelType @default(TEXT)
+
+    profileId String
+    profile   Profile @relation(fields: [profileId], references: [id], onDelete: Cascade)
+
+    serverId String?
+    Server   Server? @relation(fields: [serverId], references: [id], onDelete: Cascade)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@index([profileId])
+    @@index([serverId])
+}
