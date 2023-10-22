@@ -2,7 +2,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-export default function AuthLayout({ children }: Props) {
+export function AuthLayout({ children }: Props) {
   return (
     <div className="h-full flex items-center justify-center">{children}</div>
   );
