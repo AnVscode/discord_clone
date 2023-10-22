@@ -1,3 +1,5 @@
+NextJS 13_approute_tailwind_css: https://nextjs.org/docs/getting-started/installation
+
 Integrate_clerk: https://clerk.com/?utm_source=www.google.com.vn&utm_medium=referral&utm_campaign=none
 
 Integrate_uploadthing: https://uploadthing.com/
